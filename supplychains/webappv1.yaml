@@ -1,12 +1,12 @@
 apiVersion: supply-chain.apps.tanzu.vmware.com/v1alpha1
 kind: SupplyChain
 metadata:
-    name: webappv1
+    name: webapp.supplychains.pve.tanzu.vmware.com-0.0.1
 spec:
     defines:
         group: supplychains.pve.tanzu.vmware.com
-        kind: WebAppV1
-        plural: webappv1s
+        kind: webapp
+        plural: webapp
         version: v1alpha1
     description: Supply chain that pulls the source code from git repo, builds it using buildpacks and package the output as Carvel package.
     stages:
