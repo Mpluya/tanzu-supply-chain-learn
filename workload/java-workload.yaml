@@ -1,0 +1,21 @@
+apiVersion: supplychains.pve.tanzu.vmware.com/v1alpha1
+kind: webapp
+metadata:
+  name: java-workload
+  namespace: mae
+spec:
+  carvel:
+    serviceAccountName: "default"
+    valuesSecretName: "java-workload-values"
+    packageDomain: "pve.vmware.com"
+  gitOps:
+    branch: "main"
+    subPath: packages
+    url: ssh://git@github.com/Mpluya/tap-azure-workload-config-repo
+  registry:
+    repository: tap-build/workloads
+    server: cxscssa.azurecr.io
+  source:
+    git:
+      branch: main
+      url: https://github.com/x95castle1/friday-java-web-app.git

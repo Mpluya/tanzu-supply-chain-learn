@@ -1,0 +1,92 @@
+apiVersion: supplychains.pve.tanzu.vmware.com/v1alpha1
+kind: webapp
+metadata:
+  name: java-workload
+spec:
+  #! Kpack build specification
+  build:
+    #! Configure workload to use a non-default builder or clusterbuilder
+    builder:
+      #! builder name
+      name: "default"
+      #! builder kind
+      kind: "clusterbuilder"
+    #! cache options
+    cache:
+      #! whether to use a cache image
+      enabled: false
+      #! cache image to use
+      image: ""
+    env:
+      #! Required
+      - name: ""
+        #! Required
+        value: ""
+    #! Service account to use
+    serviceAccountName: "default"
+  #! Configuration for the generated Carvel Package
+  carvel:
+    #! Service account that gives kapp-controller privileges to create resources in the namespace.
+    serviceAccountName: ""
+    #! Name of the values Secret that provides customized values to the package installation's templating steps.
+    valuesSecretName: ""
+    #! PEM encoded certificate data for the image registry where the files will be pushed to.
+    caCertData: ""
+    #! Enable the use of IAAS based authentication for imgpkg.
+    iaasAuthEnabled:
+    #! The domain of the Carvel Package. Combines with spec.carvel.packageName to create the Package refName. If set to "", will use "default.tap".
+    packageDomain: ""
+    #! The name of the Carvel Package. Combines with spec.carvel.packageDomain to create the Package refName. If set to "", will use the workload name.
+    packageName: ""
+  env:
+    #! Required
+    - name: ""
+      value: ""
+      valueFrom:
+        resourceFieldRef:
+          containerName: ""
+          divisor: ""
+          resource: ""
+        secretKeyRef:
+          key: ""
+          name: ""
+          optional:
+        configMapKeyRef:
+          key: ""
+          name: ""
+          optional:
+        fieldRef:
+          apiVersion: ""
+          fieldPath: ""
+  gitOps:
+    #! the branch to commit changes to
+    branch: "main"
+    #! the relative path within the gitops repository to add the package configuration to.
+    subPath: ""
+    #! the repository to push the pull request to
+    #! Required
+    url: ""
+  #! Configuration for the registry to use
+  registry:
+    #! The name of the repository
+    #! Required
+    repository: ""
+    #! The name of the registry server, e.g. docker.io
+    #! Required
+    server: ""
+  source:
+    #! Use this object to retrieve source from a git repository.
+    #! The tag, commit and branch fields are mutually exclusive, use only one.
+    #! Required
+    git:
+      #! A git branch ref to watch for new source
+      branch: ""
+      #! A git commit sha to use
+      commit: ""
+      #! A git tag ref to watch for new source
+      tag: ""
+      #! The url to the git source repository
+      #! Required
+      url: ""
+    #! path inside the source to build from (build has no access to paths above the subPath)
+    subPath: ""
