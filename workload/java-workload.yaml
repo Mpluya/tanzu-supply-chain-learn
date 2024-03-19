@@ -2,7 +2,7 @@ apiVersion: supplychains.pve.tanzu.vmware.com/v1alpha1
 kind: webapp
 metadata:
   name: java-workload
-  namespace: mae
+  namespace: supplychains
 spec:
   carvel:
     serviceAccountName: "default"
